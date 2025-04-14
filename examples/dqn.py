@@ -37,7 +37,7 @@ BATCH_SIZE = 32
 REPLAY_BUFFER_SIZE = 100000
 TARGET_NETWORK_UPDATE_FREQ = 1000
 TRAINING_FREQ = 1
-NUM_FRAMES = 5000000
+NUM_FRAMES = 1000000
 FIRST_N_FRAMES = 100000
 REPLAY_START_SIZE = 5000
 END_EPSILON = 0.1
@@ -422,16 +422,12 @@ def main():
 
     # If there's an output specified, then use the user specified output.  Otherwise, create file in the current
     # directory with the game's name.
-    if args.output:
-        file_name = args.output
-    else:
-        file_name = os.getcwd() + "/" + args.game
+        file_name = os.getcwd() + "/" + "space_invaders_randomized_RLHF"
 
     load_file_path = None
-    if args.loadfile:
-        load_file_path = args.loadfile
+    
 
-    env = Environment(args.game)
+    env = Environment("space_invaders")
 
     print('Cuda available?: ' + str(torch.cuda.is_available()))
     dqn(env, args.replayoff, args.targetoff, file_name, args.save, load_file_path, args.alpha)
