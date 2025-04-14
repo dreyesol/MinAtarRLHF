@@ -1,4 +1,6 @@
 # MinAtar
+Original MinAtar implementation was used as a starting point, with project author adding Eval_Play.py and dqn_randomized_RLHF.py evaluation and training scripts provided as the added contributions for this project. original Readme content from MinAtar authors is presented in the following section:
+
 MinAtar is a testbed for AI agents which implements miniaturized versions of several Atari 2600 games. MinAtar is inspired by the Arcade Learning Environment (Bellemare et. al. 2013) but simplifies the games to make experimentation with the environments more accessible and efficient. Currently, MinAtar provides analogues to five Atari games which play out on a 10x10 grid. The environments provide a 10x10xn state representation, where each of the n channels correspond to a game-specific object, such as ball, paddle and brick in the game Breakout.
 
 <p  align="center">

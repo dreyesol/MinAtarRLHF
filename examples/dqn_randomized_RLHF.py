@@ -1,12 +1,8 @@
 ################################################################################################################
-# python3 dqn.py -g <game>                                                                                     #
+# python3 dqn_randomized_RLHF.py -g <game>                                                                                     #
 #   -o, --output <directory/file name prefix>                                                                  #
-#   -v, --verbose: outputs the average returns every 1000 episodes                                             #
 #   -l, --loadfile <directory/file name of the saved model>                                                    #
-#   -a, --alpha <number>: step-size parameter                                                                  #
 #   -s, --save: save model data every 1000 episodes                                                            #
-#   -r, --replayoff: disable the replay buffer and train on each state transition                              #
-#   -t, --targetoff: disable the target network                                                                #
 #                                                                                                              #
 # References used for this implementation:                                                                     #
 #   dqn.py by Kenny Young (kjyoung@ualberta.ca) and Tian Tian(ttian@ualberta.ca)                               #
@@ -198,9 +194,9 @@ def train(state_buffer, comparator_return, policy_net, policy_head, preference, 
 
 
 ################################################################################################################
-# dqn
+# PbTS
 #
-# DQN algorithm with the option to disable replay and/or target network, and the function saves the training data.
+# PbTS algorithm for training the reward model network.
 #
 # Inputs:
 #   output_file_name: directory and file name prefix to output data and network weights, file saved as 
@@ -210,7 +206,7 @@ def train(state_buffer, comparator_return, policy_net, policy_head, preference, 
 #   load_path: file path for a checkpoint to load, and continue training from
 #
 #################################################################################################################
-def dqn(output_file_name, store_intermediate_result=False, load_path=None):
+def pbts(output_file_name, store_intermediate_result=False, load_path=None):
     epsilon = EPSILON
     env0 = Environment("space_invaders")
     # uncomment the following line to watch the game being played while training
@@ -462,7 +458,7 @@ def main():
         load_file_path = args.loadfile
 
     print('Cuda available?: ' + str(torch.cuda.is_available()))
-    dqn(file_name, True, load_file_path)
+    pbts(file_name, True, load_file_path)
 
 
 if __name__ == '__main__':
